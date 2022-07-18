@@ -1,0 +1,50 @@
+﻿@model UserModel
+@{
+    ViewData["Title"] = "Login";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 mb-lg-0 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="col">
+                                @*Blank space to alignment*@
+                            </div>
+                            <div class="col">
+                                <form asp-action="Login" asp-controller="Home" id="Id_Form">
+                                    <span class="badge rounded-pill bg-warning text-dark" style="font-size:1vw; display: block;">PLEASE LOGIN BEFORE RESOLVING</span>
+                                    <div class="form-group mt-4">
+                                        <input type="text" class="form-control" name="UserName" id="id_UserName" placeholder="Enter Code Employee" asp-for="User_name" autofocus />
+                                    </div>
+                                    <button type="button" class="btn btn-primary mt-1" id="ModalToastBtn">Login</button>
+                                    @if (@TempData["AlertMessageError"] != null)
+                                    {
+                                        <script>
+                                            Swal.fire({
+                                                title: '@TempData["AlertMessageError"]',
+                                                icon: 'error',
+                                                showCloseButton: true,
+                                                confirmButtonText: 'OK'
+                                            })
+                                        </script>
+                                    }
+                                </form>
+                            </div>
+                            <div class="col">
+                                @*Blank space to alignment*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#ModalToastBtn").click(function() {
+        document.getElementById("Id_Form").submit();
+    });
+</script>
